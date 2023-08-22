@@ -13,7 +13,6 @@ function CategoriesList() {
     commerce.categories
       .list()
       .then((category) => {
-        console.log(category);
         setCategories(category.data);
         setLoading(false);
       })
@@ -40,6 +39,7 @@ function CategoriesList() {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {categories.map((category) => (
               <Link
+                key={category.id}
                 to={`/category/${category.slug}`}
                 className="group block rounded-lg overflow-hidden shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
               >

@@ -32,7 +32,6 @@ function Category({ cart, dispatch }) {
       });
 
     setProducts({ category, data });
-    console.log({ category, data });
     setLoading(false);
   };
 

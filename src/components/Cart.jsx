@@ -14,7 +14,10 @@ function Cart({ cart, dispatch }) {
               </h2>
               <ul role="list">
                 {Object.values(cart).map((item) => (
-                  <li className="flex items-start justify-between border-b border-gray-300 pb-4 mb-4">
+                  <li
+                    key={item.product.id}
+                    className="flex items-start justify-between border-b border-gray-300 pb-4 mb-4"
+                  >
                     <div className="flex items-start space-x-4">
                       <img
                         src={item.product.image.url}
@@ -146,13 +149,13 @@ function Cart({ cart, dispatch }) {
       ) : (
         <div className="mx-auto py-20">
           <h1 className="lg:text-4xl sm:text-2xl font-black mb-8">
-            There is nothing you selected in the universe?
+            Is there nothing you want from the universe?
           </h1>
           <Link
             to="/products"
             className="bg-indigo-600 text-white py-2 px-2 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none"
           >
-            Yes, I Want to Explore
+            Yes, I Want and to Explore
           </Link>
         </div>
       )}
