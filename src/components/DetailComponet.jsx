@@ -71,25 +71,18 @@ function DetailComponet({ cart, dispatch }) {
       ) : (
         <>
           <div className="max-w-5xl mx-auto bg-gray-100 rounded-lg shadow-lg p-6 mt-28">
-            <h2 className="text-2xl font-semibold mb-16">
-              Mens Casual Premium Slim Fit T-Shirts
-            </h2>
+            <h2 className="text-2xl font-semibold mb-16">{product.name}</h2>
             <div className="flex flex-col sm:flex-row gap-x-20">
               <div className="sm:w-2/5 mb-6 sm:mb-0">
                 <img
-                  src="https://cdn.chec.io/merchants/53771/assets/Qm2hhJh9rHd8iB2f|71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+                  src={product.image?.url}
                   alt="Product Image"
                   className="w-full h-auto rounded-lg shadow-md"
                 />
               </div>
               <div className="sm:w-3/5 sm:ml-6">
                 <p className="text-gray-600 mb-4 text-left">
-                  Slim-fitting style, contrast raglan long sleeve, three-button
-                  henley placket, light weight & soft fabric for breathable and
-                  comfortable wearing. And Solid stitched shirts with round neck
-                  made for durability and a great fit for casual fashion wear
-                  and diehard baseball fans. The Henley style round neckline
-                  includes a three-button placket.
+                  {product.description?.replace(/<[^>]*>?/gm, "")}
                 </p>
                 <p className="text-indigo-600 text-lg text-left font-semibold mb-4">
                   {product.price?.formatted_with_code}
@@ -124,11 +117,11 @@ function DetailComponet({ cart, dispatch }) {
                       <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                     </svg>
                   </button>
-                  {/* {quantity > 0 && (
-                  <p className="text-gray-600 text-lg !ml-11 font-semibold">
-                    {product.price ? product.price?.raw * quantity : quantity}
-                  </p>
-                )} */}
+                  {quantity > 1 && (
+                    <p className="h5 fw-semibold mt-2">
+                      Total: {(quantity * product.price?.raw).toFixed(2)}
+                    </p>
+                  )}
                 </div>
                 <button
                   onClick={handleAddOrRemove}

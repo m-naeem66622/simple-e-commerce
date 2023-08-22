@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Cart({ cart, dispatch }) {
+  const calculate = () => {
+    return Number(
+      Object.values(cart).reduce(
+        (acc, curr) => acc + curr.product.price.raw * curr.quantity,
+        0
+      )
+    );
+  };
+
   return (
     <div className="flex max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6 mt-20">
       {Object.keys(cart).length ? (
@@ -25,16 +34,17 @@ function Cart({ cart, dispatch }) {
                         className="w-32 h-auto rounded-lg shadow-md"
                       />
                       <div>
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-left">
                           <Link
-                            to={`/product/${item.product.image.url}`}
+                            to={`/product/${item.product.id}`}
                             className="text-blue-500 hover:underline"
                           >
                             {item.product.name}
                           </Link>
                         </h3>
-                        <p className="text-gray-600 mt-1">
-                          {item.product.price.formatted_with_code}
+                        <p className="text-gray-600 mt-1 text-left">
+                          {(item.product.price.raw * item.quantity).toFixed(2)}{" "}
+                          PKR
                         </p>
                       </div>
                     </div>
@@ -81,11 +91,6 @@ function Cart({ cart, dispatch }) {
                             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
                           </svg>
                         </button>
-                        {/* {quantity > 0 && (
-                  <p className="text-gray-600 text-lg !ml-11 font-semibold">
-                    {product.price ? product.price?.raw * quantity : quantity}
-                  </p>
-                )} */}
                       </div>
                       <button
                         onClick={() =>
@@ -113,26 +118,31 @@ function Cart({ cart, dispatch }) {
             </section>
           </div>
           <div className="w-1/3 pl-8">
-            <section aria-labelledby="summary-heading">
+            <section className="sticky top-10" aria-labelledby="summary-heading">
               <h2 id="summary-heading" className="text-xl font-semibold mb-4">
                 Order summary
               </h2>
               <dl className="border-t border-gray-300 pt-4">
                 <div className="flex justify-between py-2">
                   <dt className="text-lg">Subtotal</dt>
-                  <dd className="text-lg">$99.00</dd>
+                  <dd className="text-lg">
+                    {Object.values(cart).length > 0 && calculate().toFixed(2)}
+                  </dd>
                 </div>
                 <div className="flex justify-between py-2">
                   <dt className="text-lg">Shipping estimate</dt>
-                  <dd className="text-lg">$5.00</dd>
+                  <dd className="text-lg">Free</dd>
                 </div>
                 <div className="flex justify-between py-2">
                   <dt className="text-lg">Tax estimate</dt>
-                  <dd className="text-lg">$8.32</dd>
+                  <dd className="text-lg">5%</dd>
                 </div>
                 <div className="flex justify-between py-2">
                   <dt className="text-xl font-semibold">Order total</dt>
-                  <dd className="text-xl font-semibold">$112.32</dd>
+                  <dd className="text-xl font-semibold">
+                    {Object.values(cart).length > 0 &&
+                      (calculate() + (5 / 100) * calculate()).toFixed(2)}
+                  </dd>
                 </div>
               </dl>
               <div className="mt-4">
@@ -155,7 +165,7 @@ function Cart({ cart, dispatch }) {
             to="/products"
             className="bg-indigo-600 text-white py-2 px-2 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none"
           >
-            Yes, I Want and to Explore
+            No, I Want and to Explore
           </Link>
         </div>
       )}
