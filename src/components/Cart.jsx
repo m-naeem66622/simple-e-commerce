@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Cart({ cart, dispatch }) {
+  document.title = "Cart | Shop It - A store where you find your need";
   const calculate = () => {
     return Number(
       Object.values(cart).reduce(

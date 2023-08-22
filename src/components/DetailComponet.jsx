@@ -4,6 +4,7 @@ import Loader from "./common/Loader";
 import commerce from "../lib/commerce";
 
 function DetailComponet({ cart, dispatch }) {
+  document.title = "Product | Shop It - A store where you find your need"
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -15,6 +16,7 @@ function DetailComponet({ cart, dispatch }) {
     commerce.products
       .retrieve(id)
       .then((product) => {
+        document.title = `${product.name} | Shop It`
         setProduct(product);
         setLoading(false);
       })

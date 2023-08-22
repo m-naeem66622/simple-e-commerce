@@ -4,6 +4,7 @@ import Loader from "./common/Loader";
 import commerce from "../lib/commerce";
 
 function ProductsList({ cart, dispatch }) {
+  document.title = "Products | Shop It - A store where you find your need";
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 

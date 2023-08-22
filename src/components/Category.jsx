@@ -25,7 +25,10 @@ function Category({ cart, dispatch }) {
 
     const category = await commerce.categories
       .retrieve(slug, { type: "slug" })
-      .then((category) => category.name)
+      .then((category) => {
+        document.title = `${category.name} Collection | Shop It`
+        return category.name;
+      })
       .catch((error) => {
         setLoading(false);
         console.log(error);

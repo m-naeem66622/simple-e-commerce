@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Page404 = () => {
+  document.title = "Page Not Found | Shop It - A store where you find your need";
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md max-w-md w-full text-center">

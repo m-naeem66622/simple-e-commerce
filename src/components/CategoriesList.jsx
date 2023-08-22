@@ -4,6 +4,7 @@ import Loader from "./common/Loader";
 import { Link } from "react-router-dom";
 
 function CategoriesList() {
+  document.title = "Categories | Shop It - A store where you find your need"
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
 
