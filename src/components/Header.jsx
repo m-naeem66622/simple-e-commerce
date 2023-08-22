@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../context/CartProvider";
 
-function Header({ cart }) {
+function Header() {
+  const { cart } = useCartContext();
+
+  // For responsive navbar
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

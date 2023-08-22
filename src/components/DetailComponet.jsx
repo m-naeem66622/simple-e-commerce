@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "./common/Loader";
 import commerce from "../lib/commerce";
+import { useCartContext } from "../context/CartProvider";
 
-function DetailComponet({ cart, dispatch }) {
+function DetailComponet() {
   document.title = "Product | Shop It - A store where you find your need"
+  const { cart, dispatch } = useCartContext();
+
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);

@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import commerce from "../lib/commerce";
 import Loader from "./common/Loader";
 import ProductCard from "./common/ProductCard";
+import { useCartContext } from "../context/CartProvider";
 
-function Category({ cart, dispatch }) {
+function Category() {
+  const { cart, dispatch } = useCartContext();
+
   const params = useParams();
   const { slug } = params;
+
   const [products, setProducts] = useState({ category: "", data: [] });
   const [loading, setLoading] = useState(false);
 

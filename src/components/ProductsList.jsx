@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./common/ProductCard";
 import Loader from "./common/Loader";
 import commerce from "../lib/commerce";
+import { useCartContext } from "../context/CartProvider";
 
-function ProductsList({ cart, dispatch }) {
+
+function ProductsList() {
   document.title = "Products | Shop It - A store where you find your need";
+  const { cart, dispatch } = useCartContext();
+  
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 

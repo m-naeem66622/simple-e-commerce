@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../context/CartProvider";
 
-function Cart({ cart, dispatch }) {
+function Cart() {
   document.title = "Cart | Shop It - A store where you find your need";
+  const { cart, dispatch } = useCartContext();
+
   const calculate = () => {
     return Number(
       Object.values(cart).reduce(
